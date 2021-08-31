@@ -1,0 +1,22 @@
+#!/usr/bin/bash
+
+./build --gem5-build-type fast --arch aarch64 gem5-buildroot
+cd PolyBench-NN
+make
+cp -r ./polybench ../out/rootfs_overlay/aarch64/lkmc/
+./run \
+  --gem5-build-type fast \
+  --arch aarch64 \
+  --cpus 8 \
+  --emulator gem5 \
+  --eval-after 'm5 checkpoint;'
+  -- \
+  --cpu-type DerivO3CPU
+  --mem-type SimpleMemory
+  --caches
+  --l1d_size=128kB
+  --l1i_size=128kB
+  --l2cache
+  --l2_size=1024kB
+
+# ./run --arch aarch64 --emulator gem5 --gem5-restore 1
