@@ -45,3 +45,6 @@
 [submodule "submodules/xen"]
 	path = submodules/xen
 	url = https://github.com/cirosantilli/xen
+[submodule "PolyBench-NN"]
+	path = PolyBench-NN
+	url = https://github.com/4fterlook/PolyBench-NN.git
